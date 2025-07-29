@@ -1,14 +1,23 @@
-import Header from "./Header";
-import Sidebar from "./Sidebar";
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
 
-export default function Layout({ children }) {
+export default function App() {
   return (
-    <>
-      <Header />
-      <div style={{ display: 'flex' }}>
-        <Sidebar />
-        <main style={{ padding: '1rem', flexGrow: 1 }}>{children}</main>
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Dashboard />
+            </Layout>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
